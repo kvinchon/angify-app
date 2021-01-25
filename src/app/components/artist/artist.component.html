@@ -1,0 +1,75 @@
+<!-- artist -->
+<div *ngIf="artist">
+  <header class="artist-header">
+    <div class="row">
+      <div class="col-md-3">
+        <div *ngIf="artist.images.length > 0">
+          <img
+            class="img-fluid rounded-circle float-left"
+            src="{{ artist.images[0].url }}"
+            alt="artist"
+          />
+        </div>
+      </div>
+      <div class="col-md-9 align-self-center">
+        <p class="mb-0">{{ artist.type.toUpperCase() }}</p>
+        <h2>{{ artist.name }}</h2>
+        <p *ngIf="artist.genres.length > 0; else noGenre">
+          <strong>Genres: </strong
+          ><span *ngFor="let genre of artist.genres"
+            >{{ genre
+            }}<span
+              *ngIf="
+                artist.genres[artist.genres.length - 1] === genre;
+                else comma
+              "
+              >.</span
+            ><ng-template #comma><span>, </span></ng-template></span
+          >
+        </p>
+        <ng-template #noGenre
+          ><p><strong>Genres: </strong>inconnu</p></ng-template
+        >
+        <p *ngIf="artist.followers; else noFollowers" class="mb-0">
+          <strong>Followers: </strong>{{ numberWithCommas(artist.followers)}}
+        </p>
+        <ng-template #noFollowers
+          ><p class="mb-0"><strong>Followers: </strong>inconnu</p></ng-template
+        >
+      </div>
+    </div>
+  </header>
+
+  <!-- albums -->
+  <div class="artist-albums">
+    <h4>Albums</h4>
+    <div class="row justify-content-center">
+      <div
+        *ngFor="let album of albums"
+        class="col-md-2 m-3 p-2"
+      >
+        <div class="row h-100">
+          <div class="col-md-12">
+            <div *ngIf="album.images.length > 0">
+              <img
+                class="img-fluid text-center mb-3"
+                src="{{ album.images[0].url }}"
+                alt="album"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <h6 class="mb-0">
+              <a class="white" routerLink="/album/{{ album.id }}" routerLinkActive="active">{{
+                album.name
+              }}</a>
+            </h6>
+            <p>{{album.release_date}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+.artist-header, .album-header {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: solid 1px #333;
+}
+
+.album {
+  min-height: 300px;
+}
+
+#player, #btn-play {
+  display: none;
+}
+
+.img-rounded {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+a.white, a:hover.white {
+  color: #fff;
+}

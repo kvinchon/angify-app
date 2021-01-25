@@ -1,0 +1,44 @@
+<h1>Need Music?</h1>
+<p>
+  Angify allows you to search for an artist and discover his albums by offering
+  a preview for each song.
+</p>
+<form>
+  <div class="form-group">
+    <input
+      type="text"
+      name="searchStr"
+      [(ngModel)]="searchStr"
+      (keyup)="searchArtist()"
+      class="form-control"
+      placeholder="Search Artist..."
+    />
+  </div>
+</form>
+
+<!-- artists -->
+<div *ngIf="artists.length > 0">
+  <h4>Showing Artists for <strong>{{ searchStr }}</strong></h4>
+  <div class="row justify-content-center">
+    <div *ngFor="let artist of artists" class="col-md-2 m-3 p-2">
+      <div class="row h-100">
+        <div class="col-md-12 align-self-start d-flex justify-content-center">
+          <div *ngIf="artist.images.length > 0">
+            <img
+              class="img-rounded mb-3"
+              src="{{ artist.images[0].url }}"
+              alt="artist"
+            />
+          </div>
+        </div>
+        <div class="col-md-12 align-self-end">
+          <h6 class="text-center">
+            <a class="white" routerLink="/artist/{{ artist.id }}" routerLinkActive="active">{{
+              artist.name
+            }}</a>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
